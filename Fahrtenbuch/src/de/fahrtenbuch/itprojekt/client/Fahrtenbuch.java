@@ -14,7 +14,7 @@ public class Fahrtenbuch implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		
-		System.out.println("Entry Test");
+		System.out.println("Entry THIS IS SPARTA");
 
 	}
 }
