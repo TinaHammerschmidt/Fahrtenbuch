@@ -20,8 +20,12 @@ public class FahrtenbuchVerwaltungImpl extends RemoteServiceServlet implements F
 	
 	@Override
 	public Fahrer loginCheck(String username, String passwort) {
+				
 		// TODO Auto-generated method stub
-		return FahrerMapper.fahrerMapper().getFahrer(username, passwort);
+		Fahrer f = FahrerMapper.fahrerMapper().getFahrer(username, passwort);
+
+		return f;
 	}
+	
 
 }

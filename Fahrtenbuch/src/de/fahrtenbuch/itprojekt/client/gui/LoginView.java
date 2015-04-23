@@ -76,29 +76,50 @@ public class LoginView {
 
 		@Override
 		public void onClick(ClickEvent event) {
-					
 			
-			
-		service.loginCheck(textFeld.getText(), passwortTextBox.getText(), new AsyncCallback<Fahrer>() {
-
-				@Override
-				public void onFailure(Throwable caught) {
-					System.out.println("Error!");
-					
-				}
-
-				@Override
-				public void onSuccess(Fahrer result) {
-					ausgabeLabel.setText(result.getVorname() + " " + result.getNachname());
-					
-				}
-				
-			});
-
+			ueberPruefeLoginInformationen();
 			
 		}
 		
 		
+	}
+	
+	public void ueberPruefeLoginInformationen() {
+		
+		if (textFeld.getText().isEmpty() || passwortTextBox.getText().isEmpty()) {
+			ausgabeLabel.setText("Bitte beide Felder ausfuellen.");
+		}
+		else {
+		
+			if (textFeld.getText().matches("[a-z][a-z][0123456789][0123456789][0123456789]")) {
+				/*
+				 * Ab hier passen alle Logininformationen. Nun kommt die Datenbankabfrage per Proxy.
+				 */
+				service.loginCheck(textFeld.getText(), passwortTextBox.getText(), new AsyncCallback<Fahrer>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						ausgabeLabel.setText("User" + textFeld.getText() + "nicht gefunden.");
+						
+					}
+
+					@Override
+					public void onSuccess(Fahrer result) {
+						
+						if ((result.getVorname() == null) || (result.getNachname() == null)) {
+							ausgabeLabel.setText("User:" + " " + textFeld.getText() + " " + "mit angegebenem Passwort nicht gefunden.");
+						}
+						else {
+							ausgabeLabel.setText(result.getVorname() + " " + result.getNachname());
+						}
+					}
+					
+				});
+			}
+			else {
+				ausgabeLabel.setText("Bitte korrektes Format angeben: xx123");
+			}	
+		}
 	}
 	
 
