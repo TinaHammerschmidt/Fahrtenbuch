@@ -19,7 +19,7 @@ import de.fahrtenbuch.itprojekt.shared.bo.Fahrer;
 public class LoginView {
 	
 	/**
-	 * <b>service</b> heißt unsere Proxyreferenz, welche mit dem Server interagiert.
+	 * <b>service</b> heiÃŸt unsere Proxyreferenz, welche mit Server interagiert.
 	 */
 	
 	FahrtenbuchVerwaltungAsync service = GWT.create(FahrtenbuchVerwaltung.class);
@@ -43,6 +43,8 @@ public class LoginView {
 		 */
 		
 		loginButton.addClickHandler(new LoginClickHandler());
+		
+		
 		
 		/**
 		 * Oben definierte Buttons, Labels und Textboxen werden dem Flextable zugeordnet.
@@ -68,7 +70,7 @@ public class LoginView {
 		RootPanel.get("tabellenDiv").add(decPanel);
 	}
 	/**
-	 * ClickHandler für den Login
+	 * ClickHandler fï¿½r den Login
 	 * @author raven
 	 *
 	 */
