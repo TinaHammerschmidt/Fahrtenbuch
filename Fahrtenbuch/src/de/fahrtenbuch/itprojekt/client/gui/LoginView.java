@@ -36,10 +36,11 @@ public class LoginView {
 	private FlexTable loginFlexTable = new FlexTable();
 	
 	
+	
 	public void loadLoginView() {
 		
 		/**
-		 * Dem Button wird ein ClickHandler zugeordnet.
+		 * Dem Button wird ein ClickHandler zugeordnet. Fetch test asdf#2.2
 		 */
 		
 		loginButton.addClickHandler(new LoginClickHandler());
@@ -64,13 +65,13 @@ public class LoginView {
 		decPanel.add(loginFlexTable);
 		
 		/**
-		 * Das Loginfenster (DecoratorPanel) wird dem DIV-Element <b>Navigator</b> zugeordnet.
+		 * Das Loginfenster (DecoratorPanel) wird dem DIV-Element <b>tabellenDiv</b> zugeordnet.
 		 */
 		
 		RootPanel.get("tabellenDiv").add(decPanel);
 	}
 	/**
-	 * ClickHandler f�r den Login
+	 * ClickHandler für den Login
 	 * @author raven
 	 *
 	 */
