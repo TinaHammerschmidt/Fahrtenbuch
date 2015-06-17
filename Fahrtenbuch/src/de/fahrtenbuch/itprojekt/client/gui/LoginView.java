@@ -110,7 +110,9 @@ public class LoginView {
 							ausgabeLabel.setText("User:" + " " + textFeld.getText() + " " + "mit angegebenem Passwort nicht gefunden.");
 						}
 						else {
-							ausgabeLabel.setText(result.getVorname() + " " + result.getNachname());
+							//ausgabeLabel.setText(result.getVorname() + " " + result.getNachname());
+							RootPanel.get("tabellendiv").clear();
+							FahrtenbuchView fbview = new FahrtenbuchView();
 						}
 					}
 					
