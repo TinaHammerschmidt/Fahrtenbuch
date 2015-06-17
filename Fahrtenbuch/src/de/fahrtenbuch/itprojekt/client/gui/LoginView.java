@@ -44,6 +44,7 @@ public class LoginView {
 		 */
 		
 		loginButton.addClickHandler(new LoginClickHandler());
+		loginButton.setStyleName("buttonStyle");
 		
 		
 		
@@ -69,12 +70,15 @@ public class LoginView {
 		 */
 		
 		RootPanel.get("tabellenDiv").add(decPanel);
+		
+		//RootLayoutPanel.get().add(decPanel);
 	}
 	/**
 	 * ClickHandler für den Login
 	 * @author raven
 	 *
 	 */
+	
 	private class LoginClickHandler implements ClickHandler {
 
 		@Override
@@ -99,7 +103,6 @@ public class LoginView {
 				 * Ab hier passen alle Logininformationen. Nun kommt die Datenbankabfrage per Proxy.
 				 */
 				service.loginCheck(textFeld.getText(), passwortTextBox.getText(), new AsyncCallback<Fahrer>() {
-
 					@Override
 					public void onFailure(Throwable caught) {
 						ausgabeLabel.setText("User" + textFeld.getText() + "nicht gefunden.");
@@ -113,7 +116,12 @@ public class LoginView {
 							ausgabeLabel.setText("User:" + " " + textFeld.getText() + " " + "mit angegebenem Passwort nicht gefunden.");
 						}
 						else {
-							ausgabeLabel.setText(result.getVorname() + " " + result.getNachname());
+							//ausgabeLabel.setText(result.getVorname() + " " + result.getNachname());
+							RootPanel.get("tabellenDiv").clear();
+							FahrtenbuchView fbview = new FahrtenbuchView();
+							fbview.loadFahrtenbuch(result);
+							
+							
 						}
 					}
 					

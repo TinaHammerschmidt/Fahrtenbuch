@@ -10,8 +10,8 @@ public class DBConnection {
 	/**
 	 * Die Klasse DBConnection wird nur einmal instantiiert. Man spricht hierbei
 	 * von einem sogenannten <b>Singleton</b>.<p>
-	 * Diese Variable ist durch den Bezeichner <code>static</code> nur einmal für
-	 * sämtliche eventuellen Instanzen dieser Klasse vorhanden. Sie speichert die
+	 * Diese Variable ist durch den Bezeichner <code>static</code> nur einmal fï¿½r
+	 * sï¿½mtliche eventuellen Instanzen dieser Klasse vorhanden. Sie speichert die
 	 * einzige Instanz dieser Klasse.
 	 * 
 	 * @see NutzerMapper.nutzerMapper()
@@ -21,10 +21,10 @@ public class DBConnection {
 	
 	/**
 	 * Die URL, mit deren Hilfe die Datenbank angesprochen wird. In einer 
-	 * professionellen Applikation würden diese Zeichenketten aus einer 
-	 * Konfigurationsdatei eingelesen oder über einen Parameter von außen 
-	 * mitgegeben, um bei einer Veränderung dieser URL nicht die gesamte 
-	 * Software neu komilieren zu müssen.
+	 * professionellen Applikation wï¿½rden diese Zeichenketten aus einer 
+	 * Konfigurationsdatei eingelesen oder ï¿½ber einen Parameter von auï¿½en 
+	 * mitgegeben, um bei einer Verï¿½nderung dieser URL nicht die gesamte 
+	 * Software neu komilieren zu mï¿½ssen.
 	 */
 	
 	private static String dbHost = "localhost"; // Hostname
@@ -34,7 +34,7 @@ public class DBConnection {
 	private static String dbPass = "";      // Datenbankpasswort
 
 	/**
-	 * Gibt die IP oder den DNS des Datenbankservers zurück.
+	 * Gibt die IP oder den DNS des Datenbankservers zurï¿½ck.
 	 * @return dbHost
 	 */
 	public static String getDbHost() {
@@ -48,7 +48,7 @@ public class DBConnection {
 		DBConnection.dbHost = dbHost;
 	}
 	/**
-	 * Gibt den Port des Datenbankservers zurück.
+	 * Gibt den Port des Datenbankservers zurï¿½ck.
 	 * @return dbPort
 	 */
 	public static String getDbPort() {
@@ -62,7 +62,7 @@ public class DBConnection {
 		DBConnection.dbPort = dbPort;
 	}
 	/**
-	 * Gibt den Datenbankbenutzer zurück.
+	 * Gibt den Datenbankbenutzer zurï¿½ck.
 	 * @return dbUser
 	 */
 	public static String getDbUser() {
@@ -76,7 +76,7 @@ public class DBConnection {
 		DBConnection.dbUser = dbUser;
 	}
 	/**
-	 * Gibt das Datenbankpasswort zurück.
+	 * Gibt das Datenbankpasswort zurï¿½ck.
 	 * @return dbPass
 	 */
 	public static String getDbPass() {
@@ -90,7 +90,7 @@ public class DBConnection {
 		DBConnection.dbPass = dbPass;
 	}
 	/**
-	 * Gibt den Namen den Datenbank zurück.
+	 * Gibt den Namen den Datenbank zurï¿½ck.
 	 * @return dbName
 	 */
 	public static String getDbName() {
@@ -107,19 +107,19 @@ public class DBConnection {
 	/**
 	 * Diese statische Methode kann aufgrufen werden durch 
 	 * <code>DBConnection.connection()</code>. Sie stellt die 
-	 * Singleton-Eigenschaft sicher, indem Sie dafür sorgt, dass nur eine einzige
+	 * Singleton-Eigenschaft sicher, indem Sie dafï¿½r sorgt, dass nur eine einzige
 	 * Instanz von <code>DBConnection</code> existiert.<p>
 	 * 
 	 * <b>Fazit:</b> DBConnection sollte nicht mittels <code>new</code> 
 	 * instantiiert werden, sondern stets durch Aufruf dieser statischen Methode.<p>
 	 * 
 	 * <b>Nachteil:</b> Bei Zusammenbruch der Verbindung zur Datenbank - dies kann
-	 * z.B. durch ein unbeabsichtigtes Herunterfahren der Datenbank ausgelöst 
+	 * z.B. durch ein unbeabsichtigtes Herunterfahren der Datenbank ausgelï¿½st 
 	 * werden - wird keine neue Verbindung aufgebaut, so dass die in einem solchen
-	 * Fall die gesamte Software neu zu starten ist. In einer robusten Lösung 
-	 * würde man hier die Klasse dahingehend modifizieren, dass bei einer nicht
-	 * mehr funktionsfähigen Verbindung stets versucht würde, eine neue Verbindung
-	 * aufzubauen. Dies würde allerdings ebenfalls den Rahmen dieses Projekts 
+	 * Fall die gesamte Software neu zu starten ist. In einer robusten Lï¿½sung 
+	 * wï¿½rde man hier die Klasse dahingehend modifizieren, dass bei einer nicht
+	 * mehr funktionsfï¿½higen Verbindung stets versucht wï¿½rde, eine neue Verbindung
+	 * aufzubauen. Dies wï¿½rde allerdings ebenfalls den Rahmen dieses Projekts 
 	 * sprengen.
 	 * 
 	 * @return DAS <code>DBConnection</code>-Objekt.
@@ -141,7 +141,7 @@ public class DBConnection {
 			 * abgespeichert und fortan verwendet.
 			 */
 
-	        //Class.forName("com.mysql.jdbc.Driver"); // Datenbanktreiber für JDBC Schnittstellen laden.
+	        //Class.forName("com.mysql.jdbc.Driver"); // Datenbanktreiber fï¿½r JDBC Schnittstellen laden.
 
 	        // Verbindung zur JDBC-Datenbank herstellen.
 	        con = DriverManager.getConnection("jdbc:mysql://"+dbHost+":"+ dbPort+"/"+dbName+"?"+"user="+dbUser+"&"+"password="+dbPass);
@@ -157,7 +157,7 @@ public class DBConnection {
 	        System.out.println("VendorError: " + error.getErrorCode());
 	    }
 	  }
-		// Zurückgegeben der Verbindung
+		// ZurÃ¼ckgegeben der Verbindung
 		return con;
 	}
 }

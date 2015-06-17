@@ -15,6 +15,11 @@ h1 {
   font-size: 16pt;
 }
 
+.buttonStyle {
+	background-color: green;
+	color: black;
+}
+
 /** Most GWT widgets already have a style name defined */
 .gwt-DialogBox {
   width: 400px;
@@ -32,3 +37,8 @@ h1 {
 #closeButton {
   margin: 15px 6px 6px;
 }
+#tabellenDiv {
+}
+body {
+}
+

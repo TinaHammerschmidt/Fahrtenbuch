@@ -31,7 +31,7 @@ public class FahrerMapper {
 	}
 	
 	/*
-	 * Methode überprüft Login
+	 * Methode Ã¼berprÃ¼ft Login
 	 */
 	
 	public Fahrer getFahrer(String username, String passwort) {
@@ -60,7 +60,7 @@ public class FahrerMapper {
 		}
 		
 		/*
-		 * Gibt das ausgelesene Fahrerobjekt zurück.
+		 * Gibt das ausgelesene Fahrerobjekt zurï¿½ck.
 		 */
 		
 		return f;
