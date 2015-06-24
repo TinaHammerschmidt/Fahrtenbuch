@@ -1,16 +1,14 @@
 package de.fahrtenbuch.itprojekt.client.gui;
 
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DecoratorPanel;
-import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PasswordTextBox;
-import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.*;
 
 import de.fahrtenbuch.itprojekt.shared.FahrtenbuchVerwaltung;
 import de.fahrtenbuch.itprojekt.shared.FahrtenbuchVerwaltungAsync;
@@ -34,6 +32,8 @@ public class LoginView {
 	
 	private DecoratorPanel decPanel = new DecoratorPanel();
 	private FlexTable loginFlexTable = new FlexTable();
+	
+	
 	
 	
 	public void loadLoginView() {
@@ -60,6 +60,8 @@ public class LoginView {
 		 */
 		
 		decPanel.add(loginFlexTable);
+		textFeld.addKeyDownHandler( new LoginKeyDownHandler());
+		passwortTextBox.addKeyDownHandler( new LoginKeyDownHandler());
 		
 		/**
 		 * Das Loginfenster (DecoratorPanel) wird dem DIV-Element <b>Navigator</b> zugeordnet.
@@ -72,6 +74,16 @@ public class LoginView {
 	 * @author raven
 	 *
 	 */
+	
+	private class LoginKeyDownHandler implements KeyDownHandler{
+		
+		public void onKeyDown(KeyDownEvent event){
+			if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER){
+			ueberPruefeLoginInformationen();
+			
+		}
+	}
+	}
 	private class LoginClickHandler implements ClickHandler {
 
 		@Override
@@ -111,8 +123,10 @@ public class LoginView {
 						}
 						else {
 							//ausgabeLabel.setText(result.getVorname() + " " + result.getNachname());
-							RootPanel.get("tabellendiv").clear();
+							RootPanel.get("tabellenDiv").clear();
 							FahrtenbuchView fbview = new FahrtenbuchView();
+							fbview.loadFahrtenbuch(result);
+						
 						}
 					}
 					

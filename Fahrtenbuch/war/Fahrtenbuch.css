@@ -32,3 +32,15 @@ h1 {
 #closeButton {
   margin: 15px 6px 6px;
 }
+
+.tabellenDiv{
+	margin: 15px 6px 6px;
+
+	}
+	
+	#tabellenDiv .hPanelOne{
+	
+	width: 600px;
+	padding: 20px;
+	margin:  20px;
+	}
