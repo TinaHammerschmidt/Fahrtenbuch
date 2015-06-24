@@ -3,6 +3,9 @@ package de.fahrtenbuch.itprojekt.client.gui;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratorPanel;
@@ -45,6 +48,7 @@ public class LoginView {
 		
 		loginButton.addClickHandler(new LoginClickHandler());
 		loginButton.setStyleName("buttonStyle");
+		passwortTextBox.addKeyPressHandler(new LoginKeyPress());
 		
 		
 		
@@ -88,6 +92,17 @@ public class LoginView {
 			
 		}
 		
+	}
+	private class LoginKeyPress implements KeyPressHandler {
+
+		@Override
+		public void onKeyPress(KeyPressEvent event) {
+			
+			if (event.getCharCode() == KeyCodes.KEY_ENTER) {
+				ueberPruefeLoginInformationen();
+			}
+			
+		}
 		
 	}
 	

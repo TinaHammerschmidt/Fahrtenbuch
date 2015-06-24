@@ -4,7 +4,9 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.fahrtenbuch.itprojekt.shared.FahrtenbuchVerwaltung;
 import de.fahrtenbuch.itprojekt.shared.bo.Fahrer;
+import de.fahrtenbuch.itprojekt.shared.bo.Tour;
 import de.fahrtenbuch.itprojekt.shared.db.FahrerMapper;
+import de.fahrtenbuch.itprojekt.shared.db.TourMapper;
 
 public class FahrtenbuchVerwaltungImpl extends RemoteServiceServlet implements FahrtenbuchVerwaltung {
 
@@ -25,6 +27,14 @@ public class FahrtenbuchVerwaltungImpl extends RemoteServiceServlet implements F
 		Fahrer f = FahrerMapper.fahrerMapper().getFahrer(username, passwort);
 
 		return f;
+	}
+
+
+	@Override
+	public Tour sucheTourPerID(int id) throws IllegalArgumentException {
+			Tour t = TourMapper.tourMapper().sucheTourNachID(id);
+			
+			return t;
 	}
 	
 

@@ -44,7 +44,7 @@ public class TourMapper {
 				while (rs.next()) {
 					// Ergebnis in Beitrag- Objekt umwandeln
 					Tour t = new Tour();
-					t.setEndZeit(rs.getTimestamp("EntZeit"));
+					t.setEndZeit(rs.getTimestamp("EndZeit"));
 					t.setKmStandStart(rs.getInt("KmStandStart"));
 					t.setKmStandZiel(rs.getInt("KmStandZiel"));
 					t.setStartOrt(rs.getString("StartOrt"));
@@ -65,6 +65,40 @@ public class TourMapper {
 		    		e.printStackTrace();
 		    		return null;
 			    }				
+		}
+	 
+		public Tour sucheTourNachID(int id){
+
+
+			Connection con = DBConnection.connection();
+
+			try {
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM `Tour` WHERE `FahrerID` = '"+id+"'");
+
+				if (rs.next()) {
+
+					Tour t = new Tour();
+					t.setEndZeit(rs.getTimestamp("EndZeit"));
+					t.setKmStandStart(rs.getInt("KmStandStart"));
+					t.setKmStandZiel(rs.getInt("KmStandZiel"));
+					t.setStartOrt(rs.getString("StartOrt"));
+					t.setStartZeit(rs.getTimestamp("StartZeit"));
+					t.setTourDauer(rs.getTimestamp("TourDauer"));
+					t.setTourID(rs.getInt("TourID"));
+					t.setTourKm(rs.getInt("TourKm"));
+					t.setZielOrt(rs.getString("ZielOrt"));
+					t.setZweck(rs.getString("Zweck"));
+
+			        return t;
+			      }
+			}
+
+		    catch (SQLException e) {
+	    		e.printStackTrace();
+	    		return null;
+		    }
+		return null;
 		}
 
 }

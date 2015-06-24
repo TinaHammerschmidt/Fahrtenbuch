@@ -1,5 +1,8 @@
 package de.fahrtenbuch.itprojekt.client.gui;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratorPanel;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -9,9 +12,16 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
+import de.fahrtenbuch.itprojekt.shared.FahrtenbuchVerwaltung;
+import de.fahrtenbuch.itprojekt.shared.FahrtenbuchVerwaltungAsync;
 import de.fahrtenbuch.itprojekt.shared.bo.Fahrer;
+import de.fahrtenbuch.itprojekt.shared.bo.Tour;
 
 public class FahrtenbuchView {
+	
+	FahrtenbuchVerwaltungAsync service = GWT.create(FahrtenbuchVerwaltung.class);
+	
+	private Tour tour;
 	
 	
 	private HorizontalPanel hPanelOne = new HorizontalPanel();
@@ -47,16 +57,16 @@ public class FahrtenbuchView {
 	
 	//Panel mit veränderbaren Datensätze
 	
-	private Label startZeit1 = new Label("13:56:45");
-	private Label endZeit1 = new Label("16:54:34");
-	private Label dauer1 = new Label("3 Stunden");
-	private Label fahrerName1 = new Label("Gustav Gans");
-	private Label startOrt1 = new Label("Stuttgart");
-	private Label zielOrt1 = new Label("München");
-	private Label startKM1 = new Label("231.234");
-	private Label endKM1 = new Label("245.234");
-	private Label tourKM1 = new Label("15.323");
-	private Label zweck1 = new Label("Dienstreise");
+	private Label startZeit1 = new Label("x");
+	private Label endZeit1 = new Label("x");
+	private Label dauer1 = new Label("y");
+	private Label fahrerName1 = new Label("y");
+	private Label startOrt1 = new Label("x");
+	private Label zielOrt1 = new Label("c");
+	private Label startKM1 = new Label("v");
+	private Label endKM1 = new Label("g");
+	private Label tourKM1 = new Label("v");
+	private Label zweck1 = new Label("d");
 	
 	private Image image = new Image();
 	
@@ -69,6 +79,33 @@ public class FahrtenbuchView {
 		
 		fahrerName1.setText(fahrerObjekt.getVorname() + " " + fahrerObjekt.getNachname());
 		
+		//Holt sich per FahrerID die zugehörige Tour
+		service.sucheTourPerID(fahrerObjekt.getFahrerID(), new AsyncCallback<Tour>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Error des todes");
+				
+			}
+
+			@Override
+			public void onSuccess(Tour result) {
+
+				System.out.println(result.getZweck() + "" + "Zweck");
+				startZeit1.setText(result.getStartZeit().toString());
+				endZeit1.setText(result.getEndZeit().toString());
+				//dauer1.setText() berechnet sich aus start-endzeit
+				startOrt1.setText(result.getStartOrt());
+				zielOrt1.setText(result.getZielOrt());
+				startKM1.setText(Integer.toString(result.getKmStandStart()));
+				endKM1.setText(Integer.toString(result.getKmStandZiel()));
+				tourKM1.setText(Integer.toString(result.getTourKm()));
+				zweck1.setText(result.getZweck());
+			}
+			
+		});
+		
+
 		image.setWidth("100px");
 		image.setHeight("60px");
 		image.setUrl("images/amg_gt.jpg");
@@ -78,7 +115,7 @@ public class FahrtenbuchView {
 		
 		//Panel Oben
 		
-		hPanelOne.add(fahrtenbuchHeader);
+ 		hPanelOne.add(fahrtenbuchHeader);
 		hPanelOne.add(fahrtenBuchLink);
 		hPanelOne.add(reportLink);
 		hPanelOne.add(logoutLink);
@@ -122,5 +159,7 @@ public class FahrtenbuchView {
 		RootPanel.get("headerDiv").add(hPanelTwo);
 		RootPanel.get("tabellenDiv").add(decPanel);
 	}
+	
+
 
 }
